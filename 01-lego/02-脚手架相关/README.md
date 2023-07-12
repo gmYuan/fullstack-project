@@ -4,9 +4,9 @@
 
 1 脚手架的命令行构成：
 
-![命令行构成1](./03-1-脚手架命令构成1.jpg)
+![命令行构成1](./img/03-1-脚手架命令构成1.jpg)
 
-![命令行构成2](./03-2-脚手架命令构成2.jpg)
+![命令行构成2](./img/03-2-脚手架命令构成2.jpg)
 
 2 脚手架的命令行 内部执行流程：
 
@@ -25,7 +25,7 @@ S2 用户在终端 执行命令行：vue create demo
   - 7 执行完毕，退出执行
 
 用图表示为 <br/>
-![node /bin和/lib/node_modules关系图](./03-3-脚手架内部执行流程1.jpg)
+![node /bin和/lib/node_modules关系图](./img/03-3-脚手架内部执行流程1.jpg)
    
 
 ---------------------------------------------------------
@@ -41,7 +41,7 @@ A: <br/>
 S1 @vue/cli项目内部有 package.json文件（记作 A文件） + bin/vue.js文件
 > package.json文件里，配置了 { ......, "bin": {"vue": "bin/vue.js" } }
 
-具体见图 ![@vue/cli里的package.json](./04-1-@vue:cli的package文件.png)
+具体见图 ![@vue/cli里的package.json](./img/04-1-@vue:cli的package文件.png)
 
 S2 用户全局安装@vue/cli==>
   - S2.1 会把 @vue/cli安装到 node/lib/node_modules下
@@ -80,3 +80,17 @@ function checkNodeVersion (wanted, id) {
 #!/usr/bin/env node + test.js  ==>
   命令行中输入 test.js 效果等价于 usr/bin/env node test.js === node test.js
 ```
+
+用图表示为 ![脚手架流程图](./img/05-1脚手架执行总流程图.png)
+
+
+S4 用以下方法为脚手架命令 创建别名
+
+```js
+// 大致可以用以下命令，在node/bin目录下 创建出[命令-文件软链]映射：
+cd ~/.nvm/versions/node/v12.11.1/bin/
+ln -s /Users/xxx/test.js  imooc-test
+
+ln -s imooc-test bieming2
+```
+
