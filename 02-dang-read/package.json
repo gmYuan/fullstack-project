@@ -1,0 +1,21 @@
+{
+  "name": "02-dang-read",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode development --open",
+    "build": "vue-tsc && vite build --mode production --open",
+    "preview": "vite preview --open --port 8888"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0",
+    "vue-tsc": "^1.8.3"
+  }
+}
