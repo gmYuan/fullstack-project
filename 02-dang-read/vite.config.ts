@@ -1,5 +1,8 @@
 import { defineConfig, CommonServerOptions } from 'vite'
 import vue from '@vitejs/plugin-vue'
+// 如果要支持node的类型提示，就需要安装 @types/node
+import fs from 'fs'
+import dotenv from 'dotenv'
 
 // https://vitejs.dev/config/
 // export default defineConfig({
@@ -16,7 +19,6 @@ import vue from '@vitejs/plugin-vue'
  * 
  * 4.用 dotenv 加载环境文件的环境变量
  * 
- * 
  */
 
 export default defineConfig((mode) => {
@@ -31,9 +33,17 @@ export default defineConfig((mode) => {
   const curEnvFileName  = `${envFileName}.${mode.mode}`
   console.log("curenvFileName-- ", curEnvFileName)
 
-  let curEnv: string = mode.mode
+  // fs.readfilesync: 读取环境文件数据到 缓存对象
+  // dotenv.parse: 读取缓存对象到 envConf对象中
+  const envData = fs.readFileSync(curEnvFileName)
+  const envMap = dotenv.parse(envData)
+  console.log('envData--', envData)
+  console.log('envMap--', envMap)
+
+  
+  // 开发环境配置
   let server: CommonServerOptions = {}
-  if (curEnv === 'development') {
+  if (mode.mode === 'development') {
     server = {
       host: '192.168.2.6',
       port: 5005,
@@ -45,7 +55,7 @@ export default defineConfig((mode) => {
       }
     }
 
-  } else if (curEnv==="production"){
+  } else if (mode.mode === "production"){
     console.log('我是生产环境')
   }
 
